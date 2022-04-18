@@ -1,277 +1,130 @@
 <?php
 
 use Kirby\Cms\App as Kirby;
+use Kirby\Cms\File;
+use Kirby\Cms\Page;
+use Kirby\Filesystem\File as BaseFile;
 
 Kirby::plugin('afbora/kirby-template-hooks', [
     'hooks' => [
-        'file.changeName:after' => function ($newFile, $oldFile) {
-            try {
-                $template = $newFile->template();
-                kirby()->trigger("file.{$template}.changeName:after", ['newFile' => $newFile, 'oldFile' => $oldFile]);
-            } catch (Exception $e) {
-                throw $e;
-            }
+        'file.changeName:after' => function (File $newFile, File $oldFile) {
+            kirby()->trigger('file.' . $newFile->template()->name() . '.changeName:after', compact('newFile', 'oldFile'));
         },
 
-        'file.changeName:before' => function ($file, $name) {
-            try {
-                $template = $file->template();
-                kirby()->trigger("file.{$template}.changeName:before", ['file' => $file, 'name' => $name]);
-            } catch (Exception $e) {
-                throw $e;
-            }
+        'file.changeName:before' => function (File $file, string $name) {
+            kirby()->trigger('file.' . $file->template()->name() . '.changeName:before', compact('file', 'name'));
         },
 
-        'file.changeSort:after' => function ($newFile, $oldFile) {
-            try {
-                $template = $newFile->template();
-                kirby()->trigger("file.{$template}.changeSort:after", ['newFile' => $newFile, 'oldFile' => $oldFile]);
-            } catch (Exception $e) {
-                throw $e;
-            }
+        'file.changeSort:after' => function (File $newFile, File $oldFile) {
+            kirby()->trigger('file.' . $newFile->template()->name() . '.changeSort:after', compact('newFile', 'oldFile'));
         },
 
-        'file.changeSort:before' => function ($file, $position) {
-            try {
-                $template = $file->template();
-                kirby()->trigger("file.{$template}.changeSort:before", ['file' => $file, 'position' => $position]);
-            } catch (Exception $e) {
-                throw $e;
-            }
+        'file.changeSort:before' => function (File $file, int $position) {
+            kirby()->trigger('file.' . $file->template()->name() . '.changeSort:before', compact('file', 'position'));
         },
 
-        'file.create:after' => function ($file) {
-            try {
-                $template = $file->template();
-                kirby()->trigger("file.{$template}.create:after", ['file' => $file]);
-            } catch (Exception $e) {
-                throw $e;
-            }
+        'file.create:after' => function (File $file) {
+            kirby()->trigger('file.' . $file->template()->name() . '.create:after', compact('file'));
         },
 
-        'file.create:before' => function ($file, $upload) {
-            try {
-                $template = $file->template();
-                kirby()->trigger("file.{$template}.create:before", ['file' => $file, 'upload' => $upload]);
-            } catch (Exception $e) {
-                throw $e;
-            }
+        'file.create:before' => function (File $file, BaseFile $upload) {
+            kirby()->trigger('file.' . $file->template()->name() . '.create:before', compact('file', 'upload'));
         },
 
-        'file.delete:after' => function ($status, $file) {
-            try {
-                $template = $file->template();
-                kirby()->trigger("file.{$template}.delete:after", ['status' => $status, 'file' => $file]);
-            } catch (Exception $e) {
-                throw $e;
-            }
+        'file.delete:after' => function (bool $status, File $file) {
+            kirby()->trigger('file.' . $file->template()->name() . '.delete:after', compact('status', 'file'));
         },
 
-        'file.delete:before' => function ($file) {
-            try {
-                $template = $file->template();
-                kirby()->trigger("file.{$template}.delete:before", ['file' => $file]);
-            } catch (Exception $e) {
-                throw $e;
-            }
+        'file.delete:before' => function (File $file) {
+            kirby()->trigger('file.' . $file->template()->name() . '.delete:before', compact('file'));
         },
 
-        'file.replace:after' => function ($newFile, $oldFile) {
-            try {
-                $template = $newFile->template();
-                kirby()->trigger("file.{$template}.replace:after", ['newFile' => $newFile, 'oldFile' => $oldFile]);
-            } catch (Exception $e) {
-                throw $e;
-            }
+        'file.replace:after' => function (File $newFile, File $oldFile) {
+            kirby()->trigger('file.' . $newFile->template()->name() . '.replace:after', compact('newFile', 'oldFile'));
         },
 
-        'file.replace:before' => function ($file, $upload) {
-            try {
-                $template = $file->template();
-                kirby()->trigger("file.{$template}.replace:before", ['file' => $file, 'upload' => $upload]);
-            } catch (Exception $e) {
-                throw $e;
-            }
+        'file.replace:before' => function (File $file, BaseFile $upload) {
+            kirby()->trigger('file.' . $file->template()->name() . '.replace:before', compact('file', 'upload'));
         },
 
-        'file.update:after' => function ($newFile, $oldFile) {
-            try {
-                $template = $newFile->template();
-                kirby()->trigger("file.{$template}.update:after", ['newFile' => $newFile, 'oldFile' => $oldFile]);
-            } catch (Exception $e) {
-                throw $e;
-            }
+        'file.update:after' => function (File $newFile, File $oldFile) {
+            kirby()->trigger('file.' . $newFile->template()->name() . '.update:after', compact('newFile', 'oldFile'));
         },
 
-        'file.update:before' => function ($file, $input) {
-            try {
-                $template = $file->template();
-                kirby()->trigger("file.{$template}.update:before", ['file' => $file, 'input' => $input]);
-            } catch (Exception $e) {
-                throw $e;
-            }
+        'file.update:before' => function (File $file, array $input) {
+            kirby()->trigger('file.' . $file->template()->name() . '.update:before', compact('file', 'input'));
         },
 
-        'page.changeNum:after' => function ($newPage, $oldPage) {
-            try {
-                $template = $newPage->intendedTemplate();
-                kirby()->trigger("page.{$template}.changeNum:after", ['newPage' => $newPage, 'oldPage' => $oldPage]);
-            } catch (Exception $e) {
-                throw $e;
-            }
+        'page.changeNum:after' => function (Page $newPage, Page $oldPage) {
+            kirby()->trigger('page.' . $newPage->intendedTemplate()->name() . '.changeNum:after', compact('newPage', 'oldPage'));
         },
 
-        'page.changeNum:before' => function ($page, $num) {
-            try {
-                $template = $page->intendedTemplate();
-                kirby()->trigger("page.{$template}.changeNum:before", ['page' => $page, 'num' => $num]);
-            } catch (Exception $e) {
-                throw $e;
-            }
+        'page.changeNum:before' => function (Page $page, int $num) {
+            kirby()->trigger('page.' . $page->intendedTemplate()->name() . '.changeNum:before', compact('page', 'num'));
         },
 
-        'page.changeSlug:after' => function ($newPage, $oldPage) {
-            try {
-                $template = $newPage->intendedTemplate();
-                kirby()->trigger("page.{$template}.changeSlug:after", ['newPage' => $newPage, 'oldPage' => $oldPage]);
-            } catch (Exception $e) {
-                throw $e;
-            }
+        'page.changeSlug:after' => function (Page $newPage, Page $oldPage) {
+            kirby()->trigger('page.' . $newPage->intendedTemplate()->name() . '.changeSlug:after', compact('newPage', 'oldPage'));
         },
 
-        'page.changeSlug:before' => function ($page, $slug) {
-            try {
-                $template = $page->intendedTemplate();
-                kirby()->trigger("page.{$template}.changeSlug:before", ['page' => $page, 'slug' => $slug]);
-            } catch (Exception $e) {
-                throw $e;
-            }
+        'page.changeSlug:before' => function (Page $page, string $slug, string $languageCode) {
+            kirby()->trigger('page.' . $page->intendedTemplate()->name() . '.changeSlug:before', compact('page', 'slug', 'languageCode'));
         },
 
-        'page.changeStatus:after' => function ($newPage, $oldPage) {
-            try {
-                $template = $newPage->intendedTemplate();
-                kirby()->trigger("page.{$template}.changeStatus:after", ['newPage' => $newPage, 'oldPage' => $oldPage]);
-            } catch (Exception $e) {
-                throw $e;
-            }
+        'page.changeStatus:after' => function (Page $newPage, Page $oldPage) {
+            kirby()->trigger('page.' . $newPage->intendedTemplate()->name() . '.changeStatus:after', compact('newPage', 'oldPage'));
         },
 
-        'page.changeStatus:before' => function ($page, $status, $position = null) {
-            try {
-                $template = $page->intendedTemplate();
-                kirby()->trigger("page.{$template}.changeStatus:before", ['page' => $page, 'status' => $status, 'position' => $position]);
-            } catch (Exception $e) {
-                throw $e;
-            }
+        'page.changeStatus:before' => function (Page $page, string $status, ?int $position = null) {
+            kirby()->trigger('page.' . $page->intendedTemplate()->name() . '.changeStatus:before', compact('page', 'status', 'position'));
         },
 
-        'page.changeTemplate:after' => function ($newPage, $oldPage) {
-            try {
-                $template = $newPage->intendedTemplate();
-                kirby()->trigger("page.{$template}.changeTemplate:after", ['newPage' => $newPage, 'oldPage' => $oldPage]);
-            } catch (Exception $e) {
-                throw $e;
-            }
+        'page.changeTemplate:after' => function (Page $newPage, Page $oldPage) {
+            kirby()->trigger('page.' . $newPage->intendedTemplate()->name() . '.changeTemplate:after', compact('newPage', 'oldPage'));
         },
 
-        'page.changeTemplate:before' => function ($page, $template) {
-            try {
-                $template = $page->intendedTemplate();
-                kirby()->trigger("page.{$template}.changeTemplate:before", ['page' => $page, 'template' => $template]);
-            } catch (Exception $e) {
-                throw $e;
-            }
+        'page.changeTemplate:before' => function (Page $page, string $template) {
+            kirby()->trigger('page.' . $page->intendedTemplate()->name() . '.changeTemplate:before', compact('page', 'template'));
         },
 
-        'page.changeTitle:after' => function ($newPage, $oldPage) {
-            try {
-                $template = $newPage->intendedTemplate();
-                kirby()->trigger("page.{$template}.changeTitle:after", ['newPage' => $newPage, 'oldPage' => $oldPage]);
-            } catch (Exception $e) {
-                throw $e;
-            }
+        'page.changeTitle:after' => function (Page $newPage, Page $oldPage) {
+            kirby()->trigger('page.' . $newPage->intendedTemplate()->name() . '.changeTitle:after', compact('newPage', 'oldPage'));
         },
 
-        'page.changeTitle:before' => function ($page, $title) {
-            try {
-                $template = $page->intendedTemplate();
-                kirby()->trigger("page.{$template}.changeTitle:before", ['page' => $page, 'title' => $title]);
-            } catch (Exception $e) {
-                throw $e;
-            }
+        'page.changeTitle:before' => function (Page $page, string $title) {
+            kirby()->trigger('page.' . $page->intendedTemplate()->name() . '.changeTitle:before', compact('page', 'title'));
         },
 
-        'page.create:after' => function ($page) {
-            try {
-                $template = $page->intendedTemplate();
-                kirby()->trigger("page.{$template}.create:after", ['page' => $page]);
-            } catch (Exception $e) {
-                throw $e;
-            }
+        'page.create:after' => function (Page $page) {
+            kirby()->trigger('page.' . $page->intendedTemplate()->name() . '.create:after', compact('page'));
         },
 
-        'page.create:before' => function ($page, $input) {
-            try {
-                $template = $page->intendedTemplate();
-                kirby()->trigger("page.{$template}.create:before", ['page' => $page, 'input' => $input]);
-            } catch (Exception $e) {
-                throw $e;
-            }
+        'page.create:before' => function (Page $page, array $input) {
+            kirby()->trigger('page.' . $page->intendedTemplate()->name() . '.create:before', compact('page', 'input'));
         },
 
-        'page.delete:after' => function ($status, $page) {
-            try {
-                $template = $page->intendedTemplate();
-                kirby()->trigger("page.{$template}.delete:after", ['status' => $status, 'page' => $page]);
-            } catch (Exception $e) {
-                throw $e;
-            }
+        'page.delete:after' => function (bool $status, Page $page) {
+            kirby()->trigger('page.' . $page->intendedTemplate()->name() . '.delete:after', compact('status', 'page'));
         },
 
-        'page.delete:before' => function ($page) {
-            try {
-                $template = $page->intendedTemplate();
-                kirby()->trigger("page.{$template}.delete:before", ['page' => $page]);
-            } catch (Exception $e) {
-                throw $e;
-            }
+        'page.delete:before' => function (Page $page, bool $force) {
+            kirby()->trigger('page.' . $page->intendedTemplate()->name() . '.delete:before', compact('page', 'force'));
         },
 
-        'page.duplicate:after' => function ($duplicatePage) {
-            try {
-                $template = $duplicatePage->intendedTemplate();
-                kirby()->trigger("page.{$template}.duplicate:after", ['duplicatePage' => $duplicatePage]);
-            } catch (Exception $e) {
-                throw $e;
-            }
+        'page.duplicate:after' => function (Page $duplicatePage, Page $originalPage) {
+            kirby()->trigger('page.' . $duplicatePage->intendedTemplate()->name() . '.duplicate:after', compact('duplicatePage', 'originalPage'));
         },
 
-        'page.duplicate:before' => function ($originalPage, $input) {
-            try {
-                $template = $originalPage->intendedTemplate();
-                kirby()->trigger("page.{$template}.duplicate:before", ['originalPage' => $originalPage, 'input' => $input]);
-            } catch (Exception $e) {
-                throw $e;
-            }
+        'page.duplicate:before' => function (Page $originalPage, array $input, array $options) {
+            kirby()->trigger('page.' . $originalPage->intendedTemplate()->name() . '.duplicate:before', compact('originalPage', 'input', 'options'));
         },
 
-        'page.update:after' => function ($newPage, $oldPage) {
-            try {
-                $template = $newPage->intendedTemplate();
-                kirby()->trigger("page.{$template}.update:after", ['newPage' => $newPage, 'oldPage' => $oldPage]);
-            } catch (Exception $e) {
-                throw $e;
-            }
+        'page.update:after' => function (Page $newPage, Page $oldPage) {
+            kirby()->trigger('page.' . $newPage->intendedTemplate()->name() . '.update:after', compact('newPage', 'oldPage'));
         },
 
-        'page.update:before' => function ($page, $values, $strings) {
-            try {
-                $template = $page->intendedTemplate();
-                kirby()->trigger("page.{$template}.update:before", ['page' => $page, 'values' => $values, 'strings' => $strings]);
-            } catch (Exception $e) {
-                throw $e;
-            }
+        'page.update:before' => function (Page $page, array $values, array $strings) {
+            kirby()->trigger('page.' . $page->intendedTemplate()->name() . '.update:before', compact('page', 'values', 'strings'));
         }
     ]
 ]);
