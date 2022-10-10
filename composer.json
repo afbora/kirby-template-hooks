@@ -7,10 +7,10 @@
     "kirby3-plugin",
     "kirby-plugin"
   ],
-  "version": "1.2.0",
+  "version": "1.2.1",
   "type": "kirby-plugin",
   "license": "MIT",
-  "homepage": "https://clicktonext.com",
+  "homepage": "https://github.com/afbora/kirby-template-hooks",
   "support": {
     "email": "ahmet@getkirby.com"
   },
@@ -18,7 +18,7 @@
     {
       "name": "Ahmet Bora",
       "email": "ahmet@getkirby.com",
-      "homepage": "https://clicktonext.com"
+      "homepage": "https://owebstudio.com"
     }
   ],
   "config": {
