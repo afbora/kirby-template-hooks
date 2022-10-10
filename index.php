@@ -5,7 +5,7 @@ use Kirby\Cms\File;
 use Kirby\Cms\Page;
 use Kirby\Filesystem\File as BaseFile;
 
-Kirby::plugin('afbora/kirby-template-hooks', [
+Kirby::plugin('afbora/template-hooks', [
     'hooks' => [
         'file.changeName:after' => function (File $newFile, File $oldFile) {
             Kirby::instance()->trigger('file.' . $newFile->template()->name() . '.changeName:after', compact('newFile', 'oldFile'));
