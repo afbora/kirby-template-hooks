@@ -51,7 +51,7 @@ Kirby::plugin('afbora/template-hooks', [
             Kirby::instance()->trigger('file.' . $newFile->template() . '.update:after', compact('newFile', 'oldFile'));
         },
 
-        'file.update:before' => function (File $file, array $input) {
+        'file.update:before' => function (File $file, ?array $input) {
             Kirby::instance()->trigger('file.' . $file->template() . '.update:before', compact('file', 'input'));
         },
 
