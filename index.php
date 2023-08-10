@@ -8,51 +8,51 @@ use Kirby\Filesystem\File as BaseFile;
 Kirby::plugin('afbora/template-hooks', [
     'hooks' => [
         'file.changeName:after' => function (File $newFile, File $oldFile) {
-            Kirby::instance()->trigger('file.' . $newFile->template()->name() . '.changeName:after', compact('newFile', 'oldFile'));
+            Kirby::instance()->trigger('file.' . $newFile->template() . '.changeName:after', compact('newFile', 'oldFile'));
         },
 
         'file.changeName:before' => function (File $file, string $name) {
-            Kirby::instance()->trigger('file.' . $file->template()->name() . '.changeName:before', compact('file', 'name'));
+            Kirby::instance()->trigger('file.' . $file->template() . '.changeName:before', compact('file', 'name'));
         },
 
         'file.changeSort:after' => function (File $newFile, File $oldFile) {
-            Kirby::instance()->trigger('file.' . $newFile->template()->name() . '.changeSort:after', compact('newFile', 'oldFile'));
+            Kirby::instance()->trigger('file.' . $newFile->template() . '.changeSort:after', compact('newFile', 'oldFile'));
         },
 
         'file.changeSort:before' => function (File $file, int $position) {
-            Kirby::instance()->trigger('file.' . $file->template()->name() . '.changeSort:before', compact('file', 'position'));
+            Kirby::instance()->trigger('file.' . $file->template() . '.changeSort:before', compact('file', 'position'));
         },
 
         'file.create:after' => function (File $file) {
-            Kirby::instance()->trigger('file.' . $file->template()->name() . '.create:after', compact('file'));
+            Kirby::instance()->trigger('file.' . $file->template() . '.create:after', compact('file'));
         },
 
         'file.create:before' => function (File $file, BaseFile $upload) {
-            Kirby::instance()->trigger('file.' . $file->template()->name() . '.create:before', compact('file', 'upload'));
+            Kirby::instance()->trigger('file.' . $file->template() . '.create:before', compact('file', 'upload'));
         },
 
         'file.delete:after' => function (bool $status, File $file) {
-            Kirby::instance()->trigger('file.' . $file->template()->name() . '.delete:after', compact('status', 'file'));
+            Kirby::instance()->trigger('file.' . $file->template() . '.delete:after', compact('status', 'file'));
         },
 
         'file.delete:before' => function (File $file) {
-            Kirby::instance()->trigger('file.' . $file->template()->name() . '.delete:before', compact('file'));
+            Kirby::instance()->trigger('file.' . $file->template() . '.delete:before', compact('file'));
         },
 
         'file.replace:after' => function (File $newFile, File $oldFile) {
-            Kirby::instance()->trigger('file.' . $newFile->template()->name() . '.replace:after', compact('newFile', 'oldFile'));
+            Kirby::instance()->trigger('file.' . $newFile->template() . '.replace:after', compact('newFile', 'oldFile'));
         },
 
         'file.replace:before' => function (File $file, BaseFile $upload) {
-            Kirby::instance()->trigger('file.' . $file->template()->name() . '.replace:before', compact('file', 'upload'));
+            Kirby::instance()->trigger('file.' . $file->template() . '.replace:before', compact('file', 'upload'));
         },
 
         'file.update:after' => function (File $newFile, File $oldFile) {
-            Kirby::instance()->trigger('file.' . $newFile->template()->name() . '.update:after', compact('newFile', 'oldFile'));
+            Kirby::instance()->trigger('file.' . $newFile->template() . '.update:after', compact('newFile', 'oldFile'));
         },
 
         'file.update:before' => function (File $file, array $input) {
-            Kirby::instance()->trigger('file.' . $file->template()->name() . '.update:before', compact('file', 'input'));
+            Kirby::instance()->trigger('file.' . $file->template() . '.update:before', compact('file', 'input'));
         },
 
         'page.changeNum:after' => function (Page $newPage, Page $oldPage) {
