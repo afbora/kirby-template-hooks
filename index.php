@@ -25,6 +25,21 @@ $actions = [
         'duplicate',
         'move',
         'update'
+    ],
+    'user' => [
+        'changeEmail',
+        'changeLanguage',
+        'changeName',
+        'changePassword',
+        'changeRole',
+        'changeSecret', // Kirby 6
+        'changeTotp',   // Kirby 5
+        'create',
+        'createAvatar',
+        'delete',
+        'deleteAvatar',
+        'replaceAvatar',
+        'update'
     ]
 ];
 
@@ -40,7 +55,8 @@ foreach ($actions as $type => $names) {
                     if ($model instanceof ModelWithContent && $model::CLASS_ALIAS === $type) {
                         $template = match ($type) {
                             'file' => $model->template() ?? 'default',
-                            'page' => $model->intendedTemplate()->name()
+                            'page' => $model->intendedTemplate()->name(),
+                            'user' => $model->role()->name()
                         };
 
                         // apply the hook like core does, so that

@@ -1,6 +1,6 @@
 {
   "name": "afbora/kirby-template-hooks",
-  "description": "Enable page and file template hooks for Kirby",
+  "description": "Enable page and file template hooks and user role hooks for Kirby",
   "keywords": [
     "kirby",
     "kirby-plugin",
