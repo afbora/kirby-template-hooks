@@ -1,3 +1,5 @@
+![Kirby Template Hooks](.github/cover.png)
+
 # Kirby Template Hooks
 
 Kirby template hooks allow you to manage hooks for page and file templates and user roles more easily.
