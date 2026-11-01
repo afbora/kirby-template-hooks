@@ -21,6 +21,9 @@
     }
   ],
   "config": {
+    "allow-plugins": {
+      "getkirby/composer-installer": true
+    },
     "optimize-autoloader": true,
     "preferred-install": "dist",
     "sort-packages": true
@@ -29,10 +32,18 @@
     "php": "^8.2",
     "getkirby/composer-installer": "^1.2"
   },
+  "require-dev": {
+    "getkirby/cms": "^5.0 || ^6.0",
+    "phpunit/phpunit": "^11.5 || ^12.0 || ^13.0"
+  },
+  "scripts": {
+    "test": "phpunit"
+  },
   "extra": {
     "installer-name": "kirby-template-hooks",
     "kirby": {
       "compatible": "^5.0 || ^6.0"
-    }
+    },
+    "kirby-cms-path": false
   }
 }
