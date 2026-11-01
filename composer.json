@@ -1,11 +1,11 @@
 {
   "name": "afbora/kirby-template-hooks",
-  "description": "Enable page and file template hooks for Kirby 3",
+  "description": "Enable page and file template hooks for Kirby",
   "keywords": [
     "kirby",
-    "kirby-3",
-    "kirby3-plugin",
-    "kirby-plugin"
+    "kirby-plugin",
+    "kirby5",
+    "kirby6"
   ],
   "version": "1.2.2",
   "type": "kirby-plugin",
@@ -27,11 +27,14 @@
     "sort-packages": true
   },
   "require": {
-    "php": "^7.4|^8.0",
+    "php": "^8.2",
     "getkirby/composer-installer": "^1.2"
   },
   "extra": {
-    "installer-name": "kirby-template-hooks"
+    "installer-name": "kirby-template-hooks",
+    "kirby": {
+      "compatible": "^5.0 || ^6.0"
+    }
   },
   "minimum-stability": "dev",
   "prefer-stable": true
