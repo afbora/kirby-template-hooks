@@ -7,7 +7,6 @@
     "kirby5",
     "kirby6"
   ],
-  "version": "1.2.2",
   "type": "kirby-plugin",
   "license": "MIT",
   "homepage": "https://github.com/afbora/kirby-template-hooks",
