@@ -39,7 +39,7 @@ foreach ($actions as $type => $names) {
                 foreach ($arguments as $model) {
                     if ($model instanceof ModelWithContent && $model::CLASS_ALIAS === $type) {
                         $template = match ($type) {
-                            'file' => $model->template(),
+                            'file' => $model->template() ?? 'default',
                             'page' => $model->intendedTemplate()->name()
                         };
 
