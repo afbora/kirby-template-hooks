@@ -8,6 +8,7 @@ $actions = [
     'file' => [
         'changeName',
         'changeSort',
+        'changeTemplate',
         'create',
         'delete',
         'replace',
@@ -22,6 +23,7 @@ $actions = [
         'create',
         'delete',
         'duplicate',
+        'move',
         'update'
     ]
 ];
