@@ -43,8 +43,9 @@ foreach ($actions as $type => $names) {
                             'page' => $model->intendedTemplate()->name()
                         };
 
-                        $this->trigger($type . '.' . $template . '.' . $action . ':' . $state, $arguments);
-                        break;
+                        // apply the hook like core does, so that
+                        // template hooks can return a modified model
+                        return $this->apply($type . '.' . $template . '.' . $action . ':' . $state, $arguments);
                     }
                 }
             };
