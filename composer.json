@@ -34,7 +34,5 @@
     "kirby": {
       "compatible": "^5.0 || ^6.0"
     }
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": true
+  }
 }
