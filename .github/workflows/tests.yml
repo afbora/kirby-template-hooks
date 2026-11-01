@@ -1,0 +1,53 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    name: Kirby ${{ matrix.kirby }}, PHP ${{ matrix.php }}
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - kirby: "5.0.0"
+            php: "8.2"
+          - kirby: "^5.0"
+            php: "8.2"
+          - kirby: "^5.0"
+            php: "8.5"
+          - kirby: "^6.0@beta"
+            php: "8.3"
+          - kirby: "^6.0@beta"
+            php: "8.5"
+
+    env:
+      # the lowest supported Kirby version has known security advisories
+      COMPOSER_NO_BLOCKING: 1
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+
+      - name: Validate composer.json
+        run: composer validate --strict
+
+      - name: Install dependencies
+        run: |
+          composer require --dev --no-update "getkirby/cms:${{ matrix.kirby }}"
+          composer update --no-interaction --no-progress
+
+      - name: Run tests
+        run: vendor/bin/phpunit
